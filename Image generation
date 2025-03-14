@@ -1,0 +1,13 @@
+from diffusers import StableDiffusionPipeline
+import torch
+
+# Загружаем модель
+pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
+pipe.to("cuda")  # Если у тебя есть GPU
+
+# Генерируем изображение
+prompt = "Город будущего с летающими машинами"
+image = pipe(prompt).images[0]
+
+# Сохраняем
+image.save("output.png")
